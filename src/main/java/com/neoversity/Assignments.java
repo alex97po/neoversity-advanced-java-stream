@@ -13,7 +13,7 @@ public class Assignments {
      * @return String
      */
     public static String task1(List<String> names) {
-
+        return null;
     }
 
     /**
@@ -24,7 +24,7 @@ public class Assignments {
      * @return список рядків у верхньому регістрі, відсортованих за спаданням
      */
     public static List<String> task2(List<String> items) {
-
+        return null;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Assignments {
      * @return рядок з відсортованими числами, розділеними комами
      */
     public static String task3(String[] array) {
-
+        return null;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Assignments {
      * @return безкінечний стрім випадкових чисел
      */
     public static Stream<Long> task4(long a, long c, long m, long seed) {
-
+        return null;
     }
 
     /**
@@ -66,6 +66,6 @@ public class Assignments {
      * @return чергований стрім
      */
     public static <T> Stream<T> task5(Stream<T> first, Stream<T> second) {
-
+        return null;
     }
 }
