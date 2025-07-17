@@ -16,11 +16,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Add upstream remote (original repo)
+        run: |
+          git remote add upstream https://github.com/alex97po/neoversity-advanced-java-stream.git
+          git fetch upstream main
+
       - name: Validate only Assignments.java changed
         run: |
-          git fetch origin template:template
-          CHANGED_FILES=$(git diff --name-only template HEAD)
-          echo "Changed files since template:"
+          CHANGED_FILES=$(git diff --name-only upstream/main HEAD)
+          echo "Changed files compared to original template:"
           echo "$CHANGED_FILES"
           ALLOWED_FILE="src/main/java/com/neoversity/Assignments.java"
           for f in $CHANGED_FILES; do
@@ -29,7 +33,7 @@ jobs:
               exit 1
             fi
           done
-          echo "✅ Only allowed file modified compared to template branch"
+          echo "✅ Only allowed file modified compared to upstream main"
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
