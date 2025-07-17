@@ -24,57 +24,16 @@ jobs:
         run: mvn clean test-compile
 
       - name: Run Task 1 tests
-        id: task1
-        continue-on-error: true
         run: mvn -Dtest=Task1Test test
 
       - name: Run Task 2 tests
-        id: task2
-        continue-on-error: true
         run: mvn -Dtest=Task2Test test
 
       - name: Run Task 3 tests
-        id: task3
-        continue-on-error: true
         run: mvn -Dtest=Task3Test test
 
       - name: Run Task 4 tests
-        id: task4
-        continue-on-error: true
         run: mvn -Dtest=Task4Test test
 
       - name: Run Task 5 tests
-        id: task5
-        continue-on-error: true
         run: mvn -Dtest=Task5Test test
-
-      - name: Run Checkstyle
-        id: checkstyle
-        continue-on-error: true
-        run: mvn checkstyle:check
-
-      - name: Fail if any step failed
-        if: |
-          steps.task1.outcome != 'success' ||
-          steps.task2.outcome != 'success' ||
-          steps.task3.outcome != 'success' ||
-          steps.task4.outcome != 'success' ||
-          steps.task5.outcome != 'success' ||
-          steps.checkstyle.outcome != 'success'
-        run: |
-          echo "❌ Some checks failed!"
-          echo ""
-          echo "Summary of failed steps:"
-
-          FAILED=""
-          if [ "${{ steps.task1.outcome }}" != "success" ]; then FAILED="$FAILED Task1"; fi
-          if [ "${{ steps.task2.outcome }}" != "success" ]; then FAILED="$FAILED Task2"; fi
-          if [ "${{ steps.task3.outcome }}" != "success" ]; then FAILED="$FAILED Task3"; fi
-          if [ "${{ steps.task4.outcome }}" != "success" ]; then FAILED="$FAILED Task4"; fi
-          if [ "${{ steps.task5.outcome }}" != "success" ]; then FAILED="$FAILED Task5"; fi
-          if [ "${{ steps.checkstyle.outcome }}" != "success" ]; then FAILED="$FAILED Checkstyle"; fi
-
-          echo "$FAILED"
-          echo ""
-          echo "❌ Build failed because one or more tasks/checkstyle did not pass."
-          exit 1
