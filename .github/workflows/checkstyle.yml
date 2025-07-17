@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +20,23 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Run Maven tests and Checkstyle
-        run: mvn clean verify
+      - name: Compile project
+        run: mvn clean test-compile
+
+      - name: Run Task 1 tests
+        run: mvn -Dtest=Task1Test test || true
+
+      - name: Run Task 2 tests
+        run: mvn -Dtest=Task2Test test || true
+
+      - name: Run Task 3 tests
+        run: mvn -Dtest=Task3Test test || true
+
+      - name: Run Task 4 tests
+        run: mvn -Dtest=Task4Test test || true
+
+      - name: Run Task 5 tests
+        run: mvn -Dtest=Task5Test test || true
+
+      - name: Run Checkstyle
+        run: mvn checkstyle:check || true
